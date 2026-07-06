@@ -1,0 +1,14 @@
+# Déploiement du FRONTEND (SPA Vue servie par nginx).
+# Coolify gère le reverse-proxy + HTTPS : on n'expose que le port 80 (pas de mapping host).
+services:
+  frontend:
+    build:
+      context: ..
+      dockerfile: frontend/Dockerfile
+      args:
+        # URL PUBLIQUE du backend, figée au build (inclure le /api final).
+        # Ex: https://api.eventhub.mondomaine.fr/api
+        VITE_API_URL: ${VITE_API_URL}
+    restart: unless-stopped
+    expose:
+      - '80'

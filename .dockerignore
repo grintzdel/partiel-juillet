@@ -1,0 +1,13 @@
+# Le contexte de build des deux services est la racine du monorepo (context: ..),
+# donc Docker n'utilise QUE ce .dockerignore racine.
+**/node_modules
+**/dist
+**/coverage
+.git
+.idea
+docs
+*.log
+.env
+**/.env
+!**/.env.example
+reponses*.txt

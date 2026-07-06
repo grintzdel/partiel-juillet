@@ -1,0 +1,7 @@
+# Sert la SPA Vue en statique + fallback history mode (toute route -> index.html).
+:80 {
+	root * /srv
+	encode gzip
+	try_files {path} /index.html
+	file_server
+}
