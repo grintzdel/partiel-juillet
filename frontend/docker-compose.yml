@@ -3,7 +3,7 @@
 services:
   frontend:
     build:
-      context: ..
+      context: .
       dockerfile: frontend/Dockerfile
       args:
         # URL PUBLIQUE du backend, figée au build (inclure le /api final).
