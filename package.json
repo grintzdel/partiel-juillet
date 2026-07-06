@@ -1,13 +1,16 @@
 {
   "name": "eemi-partiel-monorepo",
   "version": "1.0.0",
-  "description": "Monorepo EventHub EEMI — backend Express/MongoDB (frontend Vue.js à venir)",
+  "description": "Monorepo EventHub EEMI — backend Express/MongoDB + frontend Vue.js",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "pnpm --filter backend dev",
+    "dev:front": "pnpm --filter frontend dev",
     "start": "pnpm --filter backend start",
+    "build:front": "pnpm --filter frontend build",
     "typecheck": "pnpm --filter backend typecheck",
+    "typecheck:front": "pnpm --filter frontend typecheck",
     "test": "pnpm --filter backend test"
   },
   "author": "EEMI",

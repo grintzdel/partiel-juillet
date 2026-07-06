@@ -1,0 +1,47 @@
+﻿OUDIN Mathis
+
+
+Vuejs
+
+
+Q1: Vite est l'outil de build et le serveur de développement. Il offre un démarrage quasi instantané puis optimise le code pour la production.
+* main.js : point d'entrée de l'application. Il crée l'instance Vue, monte le composant racine et branche les plugins (Router, Pinia).
+* App.vue : composant racine qui englobe toute l'application.
+* components/ : composants UI réutilisables.
+* views/ : composants associés à une page/route entière.
+
+Q2: v-bind : lie dynamiquement un attribut HTML à une donnée.
+v-model : liaison bidirectionnelle entre un champ de formulaire et une donnée.
+v-if : affiche un élément selon une condition.
+v-for : répète un élément sur une liste.
+@click : écoute l'événement clic (raccourci de v-on:click).
+
+<img :src="imageUrl"> <!-- v-bind --> 
+<input v-model="nom"> <!-- v-model --> 
+<li v-for="u in users">{{ u }}</li> <!-- v-for --> 
+<button @click="valider">OK</button> <!-- @click →
+
+
+Q3: La Composition API organise le code par logique plutôt que par options (data, methods…). <script setup> en est la forme concise : moins de code répétitif, tout ce qui est déclaré est automatiquement disponible dans le template.
+* ref() : crée une donnée réactive modifiable.
+* computed() : crée une valeur dérivée, recalculée automatiquement quand ses dépendances changent.
+const prix = ref(100)
+const prixTTC = computed(() => prix.value * 1.2)
+
+
+Ici prixTTC se met à jour tout seul dès que le prix change.
+
+
+
+
+Q4: Entre composants :
+* props : données passées d'un parent vers un enfant.
+* emits : événements envoyés d'un enfant vers son parent.
+* slots : zones du composant enfant dans lesquelles le parent injecte du contenu.
+
+
+
+
+À l'échelle de l'application :
+* Vue Router : gère la navigation entre pages en associant chaque URL à un composant, sans recharger le site.
+* Pinia : gère l'état global partagé entre plusieurs composants ou pages, évitant de faire circuler les données de proche en proche.
