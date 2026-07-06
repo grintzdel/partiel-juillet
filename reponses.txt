@@ -1,0 +1,31 @@
+﻿OUDIN Mathis
+
+
+Partie 1 Théorie : 
+
+
+Q1: Node.js repose sur un event loop mono-thread avec des I/O non bloquantes : lors d'une opération lente, il ne bloque pas le thread principal mais la délègue en arrière-plan et continue à traiter d'autres requêtes. Un seul processus gère ainsi des milliers de connexions.
+Opération lente : requête en base de données, appel API externe, lecture de fichier.
+Callback vs async/await : enchaîner des callbacks mène à une imbrication en pyramide, gestion d'erreur répétée, illisible. async/await donne un code linéaire avec try/catch, tout en restant non bloquant.
+Q2: express.json() parse le corps des requêtes JSON et remplit req.body (sinon undefined).
+* Global (app.use()) : s'exécute sur toutes les requêtes (parsing, logging, CORS).
+* De route : appliqué à une route précise avant son handler (ex. authentification des routes protégées).
+La différence est la portée. Chaque middleware appelle next() pour passer la main.
+Q3: Schema : la structure des documents (champs, types, validations). Un plan.
+Model : compilé depuis le Schema, c'est l'interface vers une collection MongoDB (on fait les requêtes par lui).
+Document : une instance de Model, un enregistrement concret.
+
+
+find() (Model) → tableau de documents correspondant au filtre.
+findById() (Model) → un seul document par son _id (ou null).
+save() (Document) → persiste l'instance (insertion ou mise à jour) + validations.
+
+
+
+
+Q4: Register : valider les données → vérifier que l'utilisateur n'existe pas → hacher le mot de passe avec bcrypt (salt intégré, jamais en clair) → enregistrer.
+Login : récupérer l'utilisateur par email → comparer le mot de passe au hash (irréversible, on compare sans déchiffrer) → générer un JWT signé (payload minimal, ex. l'id) → renvoyer le token.
+Middleware d'auth : placé avant les routes protégées, il extrait le token, vérifie sa validité, attache les infos à req, puis appelle next(). Sinon il coupe. Cela centralise la vérification.
+401 vs 403 :
+* 401 = authentification : « je ne sais pas qui tu es » (token absent/invalide/expiré).
+* 403 = autorisation : « je sais qui tu es, mais tu n'as pas le droit » (ex. route admin).
