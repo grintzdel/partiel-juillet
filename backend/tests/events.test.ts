@@ -46,7 +46,7 @@ describe('GET /api/events', () => {
       description: 'A hands-on workshop on Vue.js',
       date: new Date('2026-01-12'),
       location: 'EEMI',
-      category: 'workshop',
+      category: 'atelier',
     })
 
     const res = await request(app).get('/api/events')
@@ -60,15 +60,15 @@ describe('GET /api/events', () => {
 
   it('filters events by category via ?category=', async () => {
     await Event.create([
-      { title: 'React Course', description: 'Introduction to React', date: new Date('2026-02-01'), location: 'EEMI', category: 'course' },
+      { title: 'React Course', description: 'Introduction to React', date: new Date('2026-02-01'), location: 'EEMI', category: 'cours' },
       { title: 'Meetup', description: 'Networking between students', date: new Date('2026-02-02'), location: 'EEMI', category: 'networking' },
     ])
 
-    const res = await request(app).get('/api/events?category=course')
+    const res = await request(app).get('/api/events?category=cours')
 
     expect(res.status).toBe(200)
     expect(res.body).toHaveLength(1)
-    expect(res.body[0].category).toBe('course')
+    expect(res.body[0].category).toBe('cours')
   })
 })
 
@@ -82,7 +82,7 @@ describe('POST /api/events', () => {
         description: 'short',
         date: '2026-01-12',
         location: 'EEMI',
-        category: 'workshop',
+        category: 'atelier',
       })
 
     expect(res.status).toBe(400)
@@ -98,7 +98,7 @@ describe('POST /api/events', () => {
         description: 'A hands-on workshop on Vue.js',
         date: '2026-01-12',
         location: 'EEMI',
-        category: 'workshop',
+        category: 'atelier',
       })
 
     expect(res.status).toBe(401)
@@ -113,7 +113,7 @@ describe('POST /api/events', () => {
         description: 'A hands-on workshop on Vue.js',
         date: '2026-01-12',
         location: 'EEMI',
-        category: 'workshop',
+        category: 'atelier',
       })
 
     expect(res.status).toBe(201)

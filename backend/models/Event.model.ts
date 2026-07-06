@@ -1,6 +1,6 @@
 import mongoose, { Schema, type Model } from 'mongoose'
 
-export const EVENT_CATEGORIES = ['course', 'workshop', 'conference', 'networking'] as const
+export const EVENT_CATEGORIES = ['cours', 'atelier', 'conference', 'networking'] as const
 
 export type EventCategory = (typeof EVENT_CATEGORIES)[number]
 
@@ -43,7 +43,7 @@ const eventSchema = new Schema<IEvent>(
       required: [true, 'Category is required'],
       enum: {
         values: EVENT_CATEGORIES,
-        message: 'Category must be one of: course, workshop, conference, networking',
+        message: 'Category must be one of: cours, atelier, conference, networking',
       },
     },
     capacity: {
